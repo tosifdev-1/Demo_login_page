@@ -1,0 +1,17 @@
+76  pvcreate /dev/sdc
+   77  pvscan
+   78  pvdisplay /dev/sdc
+   79  vgcreate DevOps_VG /dev/sdc
+   80  vgdisplay
+   81  lvcreate -L 20.00GB -n DevOps_LVM DevOps_VG
+   82  lvdisplay
+   83  mkfs.ext4  /dev/DevOps_VG/DevOps_LVM
+   84  mkdir /tm/my_SnapData
+   85  mkdir /tmp/my_SnapData
+   86  mount  /dev/DevOps_VG/DevOps_LVM  /tm/my_SnapData
+   87  mount  /dev/sdc  /tm/my_SnapData
+   88  mount  /dev/DevOps_VG/DevOps_LVM /tmp/my_SnapData/
+   89  df -h
+   90  history
+   lvcreate -s -n DevOps_snapshot -L 1GB /dev/DevOps_VG/DevOps_LVM
+   
